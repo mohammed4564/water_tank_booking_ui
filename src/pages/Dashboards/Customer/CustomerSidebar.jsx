@@ -20,8 +20,8 @@ function CustomerSidebar() {
           🏠 Home
         </NavLink>
         <NavLink to="/customer/booking" className="sidebar-link">
-  💧 Book Water Tank
-</NavLink>
+          💧 Book Water Tank
+        </NavLink>
         <NavLink to="/customer/profile" className="sidebar-link">
           👤 Profile
         </NavLink>

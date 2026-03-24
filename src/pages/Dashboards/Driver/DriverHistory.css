@@ -1,0 +1,53 @@
+/* Main */
+.driver-history {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Heading */
+.driver-history h1 {
+  color: #0077b6;
+}
+
+/* Card container */
+.history-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Individual card */
+.history-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.history-card h3 {
+  margin-bottom: 10px;
+  color: #023e8a;
+}
+
+.history-card p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Status badge */
+.status {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.delivered {
+  background: #2ecc71;
+  color: white;
+}

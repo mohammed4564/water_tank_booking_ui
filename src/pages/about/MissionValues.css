@@ -1,0 +1,25 @@
+.mission-values h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0d6efd; /* Bootstrap primary color */
+}
+
+.mission-values p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.mission-values .card-title {
+  font-size: 1.5rem;
+  color: #0d6efd;
+}
+
+.mission-values .card-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+.mission-values .values-list li {
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+}

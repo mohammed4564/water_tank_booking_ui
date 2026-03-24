@@ -1,0 +1,20 @@
+.driver-profile {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  max-width: 500px;
+}
+
+.driver-profile h1 {
+  color: #0077b6;
+}
+
+.profile-item {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.profile-item span {
+  font-weight: bold;
+  color: #023e8a;
+}

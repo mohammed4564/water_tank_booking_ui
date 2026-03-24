@@ -1,0 +1,21 @@
+.counter-section {
+  background: #0d1218; /* blue background */
+}
+
+.counter-card {
+  background: rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s;
+}
+
+.counter-card:hover {
+  transform: translateY(-5px);
+}
+
+.counter-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.counter-label {
+  font-size: 1.1rem;
+}

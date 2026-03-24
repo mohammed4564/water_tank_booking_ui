@@ -1,5 +1,4 @@
 
-/* REMOVE ALL DEFAULT SPACE */
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +11,7 @@ html, body {
 }
 
 body {
-  margin: 0;   /* 🔥 important */
+  margin: 0; 
 }
 
 /* Make full height layout */
@@ -23,6 +22,20 @@ body {
 }
 
 /* Main content should take space */
+.main-content {
+  flex: 1;
+}/* FULL HEIGHT LAYOUT */
+html, body, #root {
+  height: 100%;
+}
+
+/* App layout */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content should grow */
 .main-content {
   flex: 1;
 }

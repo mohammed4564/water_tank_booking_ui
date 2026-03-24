@@ -1,0 +1,16 @@
+.location-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #0d6efd; /* Bootstrap primary color */
+}
+
+.location-section p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.map-wrapper iframe {
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}

@@ -1,18 +1,30 @@
 import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import AdminSidebar from "./AdminSidebar";
+import AdminHome from "./AdminHome";
+import AdminSettings from "./AdminSettings";
+import AdminReports from "./AdminReports"; // ✅ import it
+import AdminUsers from "./AdminUsers";
+import AdminOrders from "./AdminOrders";
 
 function AdminDashboard() {
   const user = JSON.parse(localStorage.getItem("user"));
 
+  if (!user) return <Navigate to="/" />;
+
   return (
-    <div style={{ padding: "40px", textAlign: "center" }}>
-      <h1>Welcome to Admin Dashboard</h1>
-      {user && <p>Hello, <b>{user.name}</b>!</p>}
-
-      <div style={{ marginTop: "30px" }}>
-        <p>This is your admin dashboard. You can manage users, orders, and more from here.</p>
+    <div className="dashboard-container">
+      <AdminSidebar />
+      <div className="dashboard-content">
+        <Routes>
+          <Route path="dashboard" element={<AdminHome />} />
+          <Route path="settings" element={<AdminSettings />} />
+          <Route path="reports" element={<AdminReports />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="orders" element={<AdminOrders />} />
+          <Route path="*" element={<Navigate to="" />} />
+        </Routes>
       </div>
-
-     
     </div>
   );
 }

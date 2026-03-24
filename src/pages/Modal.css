@@ -1,92 +1,129 @@
-/* Modal overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
 
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+
+  z-index: 9999;
 }
 
-/* Modal box */
-.modal {
+.custom-modal {
+  position: relative; /* important for close button */
   background: white;
-  padding: 30px 20px;
+  padding: 25px;
   border-radius: 12px;
   width: 90%;
   max-width: 400px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  position: relative;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   animation: fadeIn 0.3s ease;
 }
 
-/* Input fields */
-.modal input {
+.custom-modal input {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 14px;
+  border: 1px solid #ccc;
 }
 
-/* Submit button */
 .submit-btn {
   width: 100%;
   padding: 12px;
-  margin-top: 15px;
-  background-color: #ffb703;
-  color: #023e8a;
-  font-weight: bold;
+  margin-top: 10px;
+  background: #ffb703;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s;
+  font-weight: bold;
 }
 
-.submit-btn:hover {
-  background-color: #fca311;
-}
-
-/* Close button */
 .close-btn {
   width: 100%;
   padding: 12px;
   margin-top: 10px;
-  background-color: #e63946;
+  background: #e63946;
   color: white;
-  font-weight: bold;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s;
 }
 
-.close-btn:hover {
-  background-color: #d62828;
+.error {
+  color: red;
+  margin-bottom: 10px;
 }
 
-/* Modal fade animation */
 @keyframes fadeIn {
   from {opacity: 0; transform: scale(0.9);}
   to {opacity: 1; transform: scale(1);}
 }
 
-/* Responsive */
-@media (max-width: 500px) {
-  .modal {
-    padding: 20px 15px;
-  }
-
-  .modal input,
-  .submit-btn,
-  .close-btn {
-    font-size: 14px;
-  }
+/* Icon inside input */
+.input-icon-wrapper {
+  position: relative;
+  margin: 10px 0;
 }
+
+.input-icon-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 35px; /* left space for icon */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.input-icon-wrapper .input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.switch-link {
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.switch-link span {
+  color: #0d6efd;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* New Close Button for top-right X */
+.modal-close-btn {
+  position: absolute; 
+  top: 15px;
+  right: 15px;
+  background: #1f1d1d;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 28px;
+  transition: background 0.2s;
+}
+
