@@ -1,0 +1,41 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0; 
+}
+
+/* Make full height layout */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content should take space */
+.main-content {
+  flex: 1;
+}/* FULL HEIGHT LAYOUT */
+html, body, #root {
+  height: 100%;
+}
+
+/* App layout */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content should grow */
+.main-content {
+  flex: 1;
+}

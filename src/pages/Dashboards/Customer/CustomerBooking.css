@@ -1,0 +1,60 @@
+/* src/dashboards/customer/CustomerBooking.css */
+.customer-booking {
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.customer-booking h2 {
+  color: #0077b6;
+  margin-bottom: 10px;
+}
+
+.customer-booking p {
+  margin-bottom: 20px;
+  color: #023e8a;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #ffb703;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.booking-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #023e8a;
+}
+
+.booking-form input,
+.booking-form textarea {
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #0077b6;
+}
+
+.booking-form textarea {
+  resize: vertical;
+}
+
+.booking-form button {
+  padding: 10px 20px;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.booking-form button:hover {
+  background-color: #023e8a;
+}

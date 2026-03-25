@@ -1,0 +1,18 @@
+.our-story h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #0d6efd; /* Bootstrap primary color */
+}
+
+.our-story p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+.our-story img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

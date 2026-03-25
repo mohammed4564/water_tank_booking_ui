@@ -1,0 +1,37 @@
+.business-hours {
+  background: #f0f4f8;
+  color: #333;
+}
+
+.left-side .icon-wrapper {
+  font-size: 3rem;
+  color: #0d6efd;
+}
+
+.left-side h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.left-side p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.right-side .hours-table {
+  background: white;
+}
+
+.right-side .hour-row {
+  font-size: 1rem;
+  align-items: center;
+}
+
+.right-side .hour-row:last-child {
+  border-bottom: none;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}

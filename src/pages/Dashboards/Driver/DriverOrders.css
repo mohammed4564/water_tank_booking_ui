@@ -1,0 +1,25 @@
+.driver-orders h1 {
+  color: #0077b6;
+}
+
+/* Status badges */
+.status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.status.pending {
+  background: #ffcc00;
+  color: black;
+}
+
+.status.assigned {
+  background: #00b4d8;
+  color: white;
+}
+
+.status.delivered {
+  background: #2ecc71;
+  color: white;
+}

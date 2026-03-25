@@ -1,0 +1,64 @@
+/* src/dashboards/customer/CustomerHome.css */
+.customer-home {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Welcome Section */
+.welcome-section h1 {
+  font-size: 2rem;
+  color: #0077b6;
+  margin-bottom: 5px;
+}
+
+.welcome-section p {
+  color: #023e8a;
+  font-size: 1rem;
+}
+
+/* Stats Cards */
+.stats-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1 1 150px;
+  background-color: #ffb703;
+  color: #023e8a;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Actions */
+.home-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 12px 25px;
+  background-color: #0077b6;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #023e8a;
+}

@@ -1,0 +1,39 @@
+/* ===== COMMON SECTION ===== */
+.section {
+  width: 100%;              /* ✅ FULL WIDTH */
+  padding: 60px 20px;
+}
+
+/* Inner content center */
+.section-inner {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #023e8a;
+  text-align: center;
+}
+
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}

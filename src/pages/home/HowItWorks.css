@@ -1,0 +1,85 @@
+.how-it-works {
+  background-color: #f8f9fa;
+  position: relative;
+}
+
+.step-row {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  align-items: center;
+}
+
+/* Connector Line */
+.step-row::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 4px;
+  background: #0077b6;
+  z-index: 0;
+}
+
+/* Step Item */
+.step-item {
+  position: relative;
+  z-index: 1;
+}
+
+/* Step Card */
+.step-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  background: #0077b6;
+  color: #fff;
+  font-weight: 700;
+  margin: 0 auto 10px;
+  font-size: 1.1rem;
+}
+
+.step-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.step-card h5 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.step-card p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 991px) {
+  .step-row::before {
+    top: auto;
+    left: 50%;
+    height: auto;
+    width: 4px;
+    background: #0077b6;
+  }
+
+  .step-item {
+    margin-bottom: 3rem;
+  }
+}
