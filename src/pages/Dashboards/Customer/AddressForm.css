@@ -1,0 +1,57 @@
+.address-container {
+  max-width: 500px;
+  margin: auto;
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.address-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.add-btn {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.address-list {
+  margin-top: 20px;
+}
+
+.address-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.address-card:hover {
+  background: #f5f5f5;
+}
+
+.address-card.selected {
+  border: 2px solid #28a745;
+  background: #e6ffed;
+}
+
+.next-btn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}

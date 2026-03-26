@@ -31,6 +31,10 @@ function CustomerSidebar() {
         <NavLink to="/customer/settings" className="sidebar-link">
           ⚙ Settings
         </NavLink>
+
+        <NavLink to="/customer/become-driver" className="sidebar-link">
+          🚚 Become Driver
+        </NavLink>
       </nav>
     </div>
   );

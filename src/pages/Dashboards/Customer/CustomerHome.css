@@ -1,64 +1,58 @@
-/* src/dashboards/customer/CustomerHome.css */
 .customer-home {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-/* Welcome Section */
-.welcome-section h1 {
-  font-size: 2rem;
-  color: #0077b6;
-  margin-bottom: 5px;
-}
-
-.welcome-section p {
-  color: #023e8a;
-  font-size: 1rem;
-}
-
-/* Stats Cards */
-.stats-cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.stat-card {
-  flex: 1 1 150px;
-  background-color: #ffb703;
-  color: #023e8a;
   padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  font-weight: bold;
-  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
 }
 
-.stat-card:hover {
-  transform: translateY(-5px);
+.welcome-section {
+  margin-bottom: 20px;
 }
 
-/* Actions */
-.home-actions {
+.search-box {
   display: flex;
-  gap: 20px;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input,
+.search-box select {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.search-box button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.results {
+  display: flex;
+  gap: 15px;
   flex-wrap: wrap;
 }
 
-.action-btn {
-  padding: 12px 25px;
-  background-color: #0077b6;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
+.card {
+  padding: 15px;
+  border: 1px solid #ddd;
   cursor: pointer;
-  transition: 0.3s;
+  width: 200px;
 }
 
-.action-btn:hover {
-  background-color: #023e8a;
+.card:hover {
+  background-color: #f5f5f5;
+}
+
+.details {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #000;
+}
+
+.book-btn {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
 }

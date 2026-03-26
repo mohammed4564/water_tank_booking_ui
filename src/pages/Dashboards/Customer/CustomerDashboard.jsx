@@ -10,6 +10,7 @@ import CustomerSettings from "./CustomerSettings";
 import "./CustomerDashboard.css";
 import CustomerOrders from "./customerOrders";
 import CustomerBooking from "./CustomerBooking";
+import BecomeDriver from "./BecomeDriver";
 
 function CustomerDashboard() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -27,6 +28,8 @@ function CustomerDashboard() {
           <Route path="profile" element={<CustomerProfile />} />
           <Route path="orders" element={<CustomerOrders />} />
           <Route path="settings" element={<CustomerSettings />} />
+                    <Route path="become-driver" element={<BecomeDriver />} />
+
           <Route path="*" element={<Navigate to="home" />} /> {/* default page */}
         </Routes>
       </div>
