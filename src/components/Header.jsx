@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -9,17 +8,34 @@ const MySwal = withReactContent(Swal);
 
 function Header({ setShowLogin, setShowRegister }) {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
-
+  const [roles, setRoles] = useState([]);
   const [scrolled, setScrolled] = useState(false);
 
+  // helper to load roles from localStorage
+  const loadRoles = () => {
+    const storedRoles = JSON.parse(localStorage.getItem("roles") || "[]");
+    setRoles(storedRoles);
+  };
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
+    loadRoles(); // load on mount
+
+    // listen to localStorage changes (reactive login/logout)
+    const handleStorageChange = () => loadRoles();
+    window.addEventListener("storage", handleStorageChange);
+
+    // navbar scroll effect
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  const isLoggedIn = roles.length > 0;
+  const userRole = roles[0] || "customer"; // fallback
 
   const handleLogout = () => {
     MySwal.fire({
@@ -31,9 +47,23 @@ function Header({ setShowLogin, setShowRegister }) {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.clear();
+        setRoles([]);
         navigate("/");
       }
     });
+  };
+
+  const handleRoleRedirect = () => {
+    switch (userRole) {
+      case "admin":
+        navigate("/admin");
+        break;
+      case "driver":
+        navigate("/driver");
+        break;
+      default:
+        navigate("/customer");
+    }
   };
 
   return (
@@ -43,13 +73,10 @@ function Header({ setShowLogin, setShowRegister }) {
       }`}
     >
       <div className="container-fluid">
-
-        {/* LOGO */}
         <span className="navbar-brand fw-bold" onClick={() => navigate("/")}>
           🚰 Water Tank
         </span>
 
-        {/* TOGGLER */}
         <button
           className="navbar-toggler"
           type="button"
@@ -60,22 +87,23 @@ function Header({ setShowLogin, setShowRegister }) {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          
-          {/* CENTER MENU - hide if logged in */}
-          {!user && (
+          {!isLoggedIn && (
             <ul className="navbar-nav mx-auto align-items-center gap-4">
               <li className="nav-item">
-                <NavLink className="nav-link" to="/" end>Home</NavLink>
+                <NavLink className="nav-link" to="/" end>
+                  Home
+                </NavLink>
               </li>
-
               <li className="nav-item">
-                <NavLink className="nav-link" to="/about">About</NavLink>
+                <NavLink className="nav-link" to="/about">
+                  About
+                </NavLink>
               </li>
-
               <li className="nav-item">
-                <NavLink className="nav-link" to="/contact">Contact</NavLink>
+                <NavLink className="nav-link" to="/contact">
+                  Contact
+                </NavLink>
               </li>
-
               <li className="nav-item">
                 <button
                   className="btn btn-success"
@@ -87,9 +115,8 @@ function Header({ setShowLogin, setShowRegister }) {
             </ul>
           )}
 
-          {/* RIGHT SIDE */}
           <div className="d-flex align-items-center gap-2 ms-auto">
-            {!user ? (
+            {!isLoggedIn ? (
               <>
                 <button
                   className="btn btn-outline-primary me-2"
@@ -108,16 +135,13 @@ function Header({ setShowLogin, setShowRegister }) {
             ) : (
               <>
                 <img
-                  src={
-                    user.profilePic ||
-                    "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                  }
+                  src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   alt="profile"
                   className="avatar-img"
+                  onClick={handleRoleRedirect}
+                  style={{ cursor: "pointer" }}
                 />
-
-                <span>{user.name}</span>
-
+                <span className="fw-bold text-capitalize">{userRole}</span>
                 <button
                   className="btn btn-danger btn-sm"
                   onClick={handleLogout}
@@ -127,7 +151,6 @@ function Header({ setShowLogin, setShowRegister }) {
               </>
             )}
           </div>
-
         </div>
       </div>
     </nav>

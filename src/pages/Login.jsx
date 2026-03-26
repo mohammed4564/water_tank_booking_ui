@@ -13,38 +13,56 @@ function LoginModal({ setShowLogin, setShowRegister }) {
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    setError("");
+const handleSubmit = async () => {
+  setLoading(true);
+  setError("");
 
-    try {
-      const response = await fetch("http://127.0.0.1:5000/api/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
+  try {
+    const response = await fetch("http://127.0.0.1:5000/api/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-      if (!response.ok) setError(data.error || "Login failed!");
-      else {
-        localStorage.setItem("access_token", data.access_token);
-        localStorage.setItem("refresh_token", data.refresh_token);
-        localStorage.setItem("user", JSON.stringify(data.user));
+    const data = await response.json();
 
-        const role = data.user.role;
-        if (role === "admin") navigate("/admin");
-        else if (role === "customer") navigate("/customer");
-        else if (role === "driver") navigate("/driver");
-
-        setShowLogin(false);
-        setFormData({ email: "", password: "" });
-      }
-    } catch {
-      setError("Network error. Try again.");
+    if (!response.ok) {
+      setError(data.error || "Login failed!");
+      setLoading(false);
+      return;
     }
 
-    setLoading(false);
-  };
+    // Save user info
+    localStorage.setItem("access_token", data.access_token);
+    localStorage.setItem("refresh_token", data.refresh_token);
+    localStorage.setItem("user", JSON.stringify({ id: data.id, name: data.name }));
+    localStorage.setItem("roles", JSON.stringify(data.roles));
+
+    setShowLogin(false);
+    setFormData({ email: "", password: "" });
+
+    // Trigger Header update
+    window.dispatchEvent(new Event("storage"));
+
+    // Redirect to dashboard
+    const role = data.roles[0] || "customer";
+    switch (role) {
+      case "admin":
+        navigate("/admin");
+        break;
+      case "driver":
+        navigate("/driver");
+        break;
+      default:
+        navigate("/customer");
+    }
+
+  } catch (err) {
+    setError("Network error. Try again.");
+  }
+
+  setLoading(false);
+};
 
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains("modal-overlay")) setShowLogin(false);
@@ -53,8 +71,6 @@ function LoginModal({ setShowLogin, setShowRegister }) {
   return (
     <div className="modal-overlay" onClick={handleOverlayClick}>
       <div className="custom-modal" onClick={(e) => e.stopPropagation()}>
-
-        {/* Top-right close button */}
         <button className="modal-close-btn" onClick={() => setShowLogin(false)}>
           <AiOutlineClose />
         </button>
@@ -62,7 +78,6 @@ function LoginModal({ setShowLogin, setShowRegister }) {
         <h2>Login</h2>
         {error && <p className="error">{error}</p>}
 
-        {/* Email Input */}
         <div className="input-icon-wrapper">
           <AiOutlineMail className="input-icon" />
           <input
@@ -74,7 +89,6 @@ function LoginModal({ setShowLogin, setShowRegister }) {
           />
         </div>
 
-        {/* Password Input */}
         <div className="input-icon-wrapper">
           <AiOutlineLock className="input-icon" />
           <input
@@ -84,10 +98,7 @@ function LoginModal({ setShowLogin, setShowRegister }) {
             value={formData.password}
             onChange={handleChange}
           />
-          <span
-            className="password-toggle"
-            onClick={() => setShowPassword(!showPassword)}
-          >
+          <span className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
             {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
           </span>
         </div>
@@ -102,7 +113,6 @@ function LoginModal({ setShowLogin, setShowRegister }) {
             Register
           </span>
         </p>
-
       </div>
     </div>
   );

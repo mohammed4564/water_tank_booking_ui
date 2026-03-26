@@ -2,10 +2,14 @@
 import { Navigate } from "react-router-dom";
 
 function ProtectedRoute({ children, allowedRoles }) {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const roles = JSON.parse(localStorage.getItem("roles") || "[]");
 
-  if (!user) return <Navigate to="/" />; // Not logged in
-  if (!allowedRoles.includes(user.role)) return <Navigate to="/" />; // Role not allowed
+  // Not logged in
+  if (!roles || roles.length === 0) return <Navigate to="/" />;
+
+  // Check if at least one allowed role exists
+  const hasAccess = roles.some((role) => allowedRoles.includes(role));
+  if (!hasAccess) return <Navigate to="/" />;
 
   return children;
 }
