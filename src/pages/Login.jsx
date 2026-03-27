@@ -13,56 +13,60 @@ function LoginModal({ setShowLogin, setShowRegister }) {
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-const handleSubmit = async () => {
-  setLoading(true);
-  setError("");
+  const handleSubmit = async () => {
+    setLoading(true);
+    setError("");
 
-  try {
-    const response = await fetch("http://127.0.0.1:5000/api/users/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const response = await fetch("http://127.0.0.1:5000/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (!response.ok) {
-      setError(data.error || "Login failed!");
-      setLoading(false);
-      return;
+      if (!response.ok) {
+        setError(data.error || "Login failed!");
+        setLoading(false);
+        return;
+      }
+
+      // Save user info
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token);
+      localStorage.setItem("user", JSON.stringify({ id: data.id, name: data.name }));
+      localStorage.setItem("roles", JSON.stringify(data.roles));
+
+      setShowLogin(false);
+      setFormData({ email: "", password: "" });
+
+      // Trigger Header update
+      window.dispatchEvent(new Event("storage"));
+
+      // Redirect to dashboard
+      const role = data.roles[0] || "customer";
+      switch (role) {
+        case "admin":
+          navigate("/admin");
+          break;
+        case "driver":
+          navigate("/driver");
+          break;
+        case "water_source_owner":
+          navigate("/water-source-dashboard"); // ✅ Change route here
+          break;
+
+        default:
+          navigate("/customer");
+      }
+
+    } catch (err) {
+      setError("Network error. Try again.");
     }
 
-    // Save user info
-    localStorage.setItem("access_token", data.access_token);
-    localStorage.setItem("refresh_token", data.refresh_token);
-    localStorage.setItem("user", JSON.stringify({ id: data.id, name: data.name }));
-    localStorage.setItem("roles", JSON.stringify(data.roles));
-
-    setShowLogin(false);
-    setFormData({ email: "", password: "" });
-
-    // Trigger Header update
-    window.dispatchEvent(new Event("storage"));
-
-    // Redirect to dashboard
-    const role = data.roles[0] || "customer";
-    switch (role) {
-      case "admin":
-        navigate("/admin");
-        break;
-      case "driver":
-        navigate("/driver");
-        break;
-      default:
-        navigate("/customer");
-    }
-
-  } catch (err) {
-    setError("Network error. Try again.");
-  }
-
-  setLoading(false);
-};
+    setLoading(false);
+  };
 
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains("modal-overlay")) setShowLogin(false);

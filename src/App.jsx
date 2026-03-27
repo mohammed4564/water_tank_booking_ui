@@ -17,6 +17,7 @@ import DriverDashboard from "./pages/Dashboards/Driver/DriverDashboard";
 // Protected Route
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/home/Home";
+import WaterSourceDashboard from "./pages/Dashboards/waterResources/WaterSourceDashboard";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -58,6 +59,17 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+           <Route
+            path="/water-source-dashboard/*"
+            element={
+              <ProtectedRoute allowedRoles={["water_source_owner"]}>
+                <WaterSourceDashboard/>
+              </ProtectedRoute>
+            }
+          />
+
+          
         </Routes>
       </div>
 
