@@ -61,6 +61,10 @@ function Header({ setShowLogin, setShowRegister }) {
       case "driver":
         navigate("/driver");
         break;
+            case "water_source_owner":   // ✅ Added water source owner
+      navigate("/water-source-owner"); // Make sure this route matches your React Router
+      break;
+
       default:
         navigate("/customer");
     }
