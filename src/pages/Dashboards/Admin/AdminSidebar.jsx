@@ -30,6 +30,9 @@ function AdminSidebar() {
         <NavLink to="/admin/reports" className="sidebar-link">
           📊 Reports
         </NavLink>
+        <NavLink to="/admin/requests" className="sidebar-link">
+          📬 Driver Requests
+        </NavLink>
         <NavLink to="/admin/settings" className="sidebar-link">
           ⚙ Settings
         </NavLink>
